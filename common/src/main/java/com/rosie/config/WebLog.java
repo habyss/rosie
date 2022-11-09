@@ -18,7 +18,7 @@ import java.util.Objects;
 @Slf4j
 @Aspect
 @Component
-public class WebLogAspect {
+public class WebLog {
      /**
      * somenet包下的以Controller结尾的类的方法
      */

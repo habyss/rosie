@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Data
 public class WeatherDto implements Serializable {
@@ -14,4 +17,10 @@ public class WeatherDto implements Serializable {
     private String weatherName;
 
     private String weatherType;
+
+    private LocalDateTime localDateTime;
+
+    private LocalDate localDate;
+
+    private LocalTime localTime;
 }
