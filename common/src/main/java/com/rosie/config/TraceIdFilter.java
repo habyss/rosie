@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -22,7 +23,13 @@ public class TraceIdFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain chain) throws ServletException, IOException {
-        TraceIdUtil.resetTraceId();
+        // 服务间透传traceId
+        String traceId = request.getHeader(TraceIdUtil.TRACE_ID);
+        if (StringUtils.hasText(traceId)){
+            TraceIdUtil.resetTraceId(traceId);
+        }else {
+            TraceIdUtil.resetTraceId();
+        }
         log.info("---请求地址: {} - {}", request.getServletPath(), request.getQueryString());
         chain.doFilter(request, response);
     }
