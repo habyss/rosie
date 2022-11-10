@@ -1,0 +1,6 @@
+spring:
+  redis:
+    host: xxx
+    port: 1
+    database: 1
+    password: xxxx
